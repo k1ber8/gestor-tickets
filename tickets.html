@@ -14,26 +14,47 @@
           <th>ID</th>
           <th>Asunto</th>
           <th>Estado</th>
-          <th>Acciones</th> <!-- Nueva columna -->
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody id="ticketList">
-        <tr>
-          <td>1</td>
-          <td>Falla en impresora</td>
-          <td>Abierto</td>
-          <td><button class="btn-eliminar">Eliminar</button></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Error en sistema</td>
-          <td>Cerrado</td>
-          <td><button class="btn-eliminar">Eliminar</button></td>
-        </tr>
+        <!-- Aquí se llenarán los tickets dinámicamente -->
       </tbody>
     </table>
     <a href="nuevo-ticket.html">Crear nuevo ticket</a>
   </div>
+
+  <script src="script.js"></script>
+  <script>
+    const ticketList = document.getElementById('ticketList');
+
+    // Cargar tickets desde localStorage
+    let tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+    function mostrarTickets() {
+      ticketList.innerHTML = ''; // Limpiar tabla
+      tickets.forEach((ticket, index) => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+          <td>${ticket.id}</td>
+          <td>${ticket.asunto}</td>
+          <td>${ticket.estado}</td>
+          <td><button class="btn-eliminar">Eliminar</button></td>
+        `;
+        ticketList.appendChild(fila);
+      });
+
+      // Funcionalidad de eliminar
+      document.querySelectorAll('.btn-eliminar').forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+          tickets.splice(index, 1); // Eliminar del array
+          localStorage.setItem('tickets', JSON.stringify(tickets)); // Guardar cambios
+          mostrarTickets(); // Volver a renderizar
+        });
+      });
+    }
+
+    mostrarTickets();
+  </script>
 </body>
 </html>
-

@@ -6,16 +6,50 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Registrar Nuevo Ticket</h1>
-  <div class="login-container">
+  <h1>Crear nuevo ticket</h1>
+  <div class="tickets-container">
     <form id="newTicketForm">
       <label>Asunto:</label>
       <input type="text" id="asunto" required>
-      <label>Descripción:</label>
-      <textarea id="descripcion" required></textarea>
-      <button type="submit">Guardar Ticket</button>
+      
+      <label>Estado:</label>
+      <select id="estado">
+        <option value="Abierto">Abierto</option>
+        <option value="Cerrado">Cerrado</option>
+      </select>
+      
+      <button type="submit">Agregar ticket</button>
     </form>
   </div>
+
   <script src="script.js"></script>
+  <script>
+    const newTicketForm = document.getElementById('newTicketForm');
+
+    newTicketForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const asunto = document.getElementById('asunto').value;
+      const estado = document.getElementById('estado').value;
+
+      // Obtener tickets actuales
+      let tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+      // Crear nuevo ticket con ID automático
+      const nuevoTicket = {
+        id: tickets.length + 1,
+        asunto,
+        estado
+      };
+
+      tickets.push(nuevoTicket);
+
+      // Guardar en localStorage
+      localStorage.setItem('tickets', JSON.stringify(tickets));
+
+      // Redirigir a tickets.html
+      window.location.href = 'tickets.html';
+    });
+  </script>
 </body>
 </html>

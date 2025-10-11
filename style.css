@@ -15,7 +15,7 @@ body {
   box-shadow: 0 0 10px #ccc;
 }
 
-input, button, textarea {
+input, button, textarea, select {
   width: 100%;
   padding: 8px;
   margin-top: 10px;
@@ -27,6 +27,7 @@ button {
   border: none;
   border-radius: 5px;
 }
+
 .btn-eliminar {
   background-color: #e74c3c;
   color: white;
@@ -40,4 +41,3 @@ button {
 .btn-eliminar:hover {
   background-color: #c0392b;
 }
-
