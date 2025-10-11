@@ -1,24 +1,86 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  text-align: center;
+/* ====== NAVBAR ====== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #C38AB3;
+  padding: 15px 40px;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar .logo {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
   margin: 0;
   padding: 0;
 }
 
-.login-container, .tickets-container {
+.navbar .nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links li a:hover {
+  color: #fce4ec;
+}
+
+/* ====== CUERPO Y LOGIN ====== */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  margin: 0;
+  text-align: center;
+}
+
+/* evita que el body se estire por el nav */
+h1 {
+  margin: 40px 0 20px;
+}
+
+.login-container,.tickets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   background: #fff;
-  width: 300px;
-  margin: 50px auto;
+  width: 320px;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px #ccc;
+  margin-bottom: 40px;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+#loginForm label {
+  align-self: flex-start;
+  font-weight: 600;
 }
 
 input, button, textarea {
   width: 100%;
   padding: 8px;
-  margin-top: 10px;
+  margin-top: 4px;
+  box-sizing: border-box;
 }
 
 button {
@@ -26,4 +88,10 @@ button {
   color: #fff;
   border: none;
   border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #b46aa2;
 }
